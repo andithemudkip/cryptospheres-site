@@ -1,64 +1,87 @@
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
+import Planet from '../components/Planet';
+import Particles from 'react-tsparticles';
 
-export default function Home() {
+import { RiTwitterLine, RiGithubLine, RiHeart3Line } from 'react-icons/ri';
+
+const loadPlanets = (offset, limit) => {
+  const options = { method: 'GET' };
+  const owner = '0xEAb0028b493e029b41F5A4386f789507C00fdC84';
+  const collection = 'crypto-spheres';
+
+  // fetch (`https://api.opensea.io/api/v1/assets?order_direction=desc&offset=${offset}&limit=${limit}&owner=${owner}&collection=${collection}`, options)
+  //   .then (json => json.json ()).then (response => console.log (response))
+  //   .catch (err => console.error (err));
+}
+
+export default function Home () {
+  const [planets, setPlanets] = useState ([]);
+  const [canLoadMorePlanets, setCanLoadMorePlanets] = useState (true);
+  useEffect (() => loadPlanets (0, 20), []);
   return (
     <div className={styles.container}>
+      <Particles
+        id = "tsparticles"
+        url = "/particles.json"
+      />
       <Head>
-        <title>Create Next App</title>
+        <title>CryptoSpheres</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          WELCOME TO CRYPTOSPHERES
         </h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+        <div className = { styles ['description-wrapper'] }>
+          <div className = {styles.description}>
+            <div className = {styles.desctitle}>What are CryptoSpheres?</div>
+            <b>CryptoSpheres</b> are collection of digital collectibles stored on the Ethereum blockchain
+            <br/>
+          </div>
+
+          <div className = {styles.description}>
+            <div className = {styles.desctitle}>Huh?</div>
+            Each CryptoSphere is a one of a kind planet that <b>you</b> can own!
+          </div>
+        </div>
+
+        {/* <h1 className={styles.title}>
+          Welcome to CryptoSpheres
+        </h1>
+
+        <p className = {styles.description}>
+          <b>CryptoSpheres</b> are collection of digital collectibles stored on the Ethereum blockchain
+          <br/>
         </p>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+        <p className = {styles.description}>
+          Each CryptoSphere is a one of a kind planet that <b>you</b> can own!
+        </p>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+        <div>
+          {
+            planets.map (planet => <Planet
+              img = {planet.image_preview_url}
+              permalink = { planet.permalink }
+              asset_contract = { planet.asset_contract }
+              token_id = { planet.token_id }
+            />)
+          }
+        </div> */}
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        
       </main>
 
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
+          <div style = {{ color: 'gray' }}>Brought to you with {''} <RiHeart3Line className = {styles.heart} style = {{ color: 'white' }} /> by <a style = {{ color: '#1DA1F2' }} href = "https://twitter.com/andithemudkip">@andithemudkip</a></div>
+          <div>
+            <a href = "https://twitter.com/andithemudkip"><RiTwitterLine style = {{ color: '#1DA1F2' }} className = { styles.social }/> </a>
+            <a href = "https://github.com/andithemudkip"><RiGithubLine style = {{ color: 'gray' }} className = { styles.social } /> </a>
+          </div>
       </footer>
     </div>
   )

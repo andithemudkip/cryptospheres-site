@@ -39,7 +39,7 @@ export default function Home () {
         <div className = { styles ['description-wrapper'] }>
           <div className = {styles.description}>
             <div className = {styles.desctitle}>What are CryptoSpheres?</div>
-            <b>CryptoSpheres</b> are collection of digital collectibles stored on the Ethereum blockchain
+            <b>CryptoSpheres</b> are digital collectibles stored on the Ethereum blockchain
             <br/>
           </div>
 

@@ -11,9 +11,9 @@ const loadPlanets = (offset, limit) => {
   const owner = '0xEAb0028b493e029b41F5A4386f789507C00fdC84';
   const collection = 'crypto-spheres';
 
-  // fetch (`https://api.opensea.io/api/v1/assets?order_direction=desc&offset=${offset}&limit=${limit}&owner=${owner}&collection=${collection}`, options)
-  //   .then (json => json.json ()).then (response => console.log (response))
-  //   .catch (err => console.error (err));
+  fetch (`https://api.opensea.io/api/v1/assets?order_direction=desc&offset=${offset}&limit=${limit}&collection=${collection}`, options)
+    .then (json => json.json ()).then (response => console.log (response))
+    .catch (err => console.error (err));
 }
 
 export default function Home () {

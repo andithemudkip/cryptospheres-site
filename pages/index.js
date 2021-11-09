@@ -33,7 +33,7 @@ export default function Home () {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          WELCOME TO CRYPTOSPHERES
+          WELCOME TO CRYPTOSPHERES 🌍
         </h1>
 
         <div className = { styles ['description-wrapper'] }>
@@ -86,3 +86,4 @@ export default function Home () {
     </div>
   )
 }
+
